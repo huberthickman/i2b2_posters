@@ -1,0 +1,20 @@
+create table metadataxml_map (
+  c_basecode  varchar2(50),
+  c_metadataxml clob);
+
+create view example_metadata_v as 
+(
+  select em.c_hlevel,em.c_fullname, em.c_name,  em.c_synonym_cd,
+         em.c_visualattributes,em.c_totalnum,em.c_basecode,
+         mm.c_metadataxml,em.c_facttablecolumn	,em.c_tablename ,
+         em.c_columnname,em.c_columndatatype,
+         em.c_operator,em.c_dimcode,
+         em.c_comment,em.c_tooltip ,em.m_applied_path,
+         em.update_date,em.download_date,em.import_date,
+         em.sourcesystem_cd ,em.valuetype_cd,
+         em.m_exclusion_cd,em.c_path,em.c_symbol
+         from example_metadata em 
+         left outer join metadataxml_map mm 
+         on em.c_basecode = mm.c_basecode
+         	
+);         	
